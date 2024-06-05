@@ -3,4 +3,4 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/445b32521d2be9916a26/maintainability)](https://codeclimate.com/github/CatIsCode/frontend-project-44/maintainability)
 
-https://asciinema.org/a/pCC2IBYRx8LPILsBdA1CFHd2L
+https://asciinema.org/a/ogncAaFSCwBcf7trNUGYZ78BF
