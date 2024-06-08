@@ -14,9 +14,9 @@ export default () => {
     const question = getRandomInt(1, 50);
     console.log(`Question: ${question}`);
 
-    if (question % 2 === 0) correctAnswer = 'no';
+    if (question % 2 === 0) correctAnswer = 'yes';
     else {
-      correctAnswer = 'yes';
+      correctAnswer = 'no';
     }
     const userAnswer = getAnswer();
 
