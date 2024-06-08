@@ -18,7 +18,10 @@ export default () => {
       if (num % j === 0) sum += 1;
     }
 
-    sum > 2 ? (correctAnswer = 'no') : (correctAnswer = 'yes');
+    if (sum > 2) correctAnswer = 'no';
+    else {
+      correctAnswer = 'yes';
+    }
 
     console.log(`Question: ${num}`);
     const userAnswer = getAnswer();
