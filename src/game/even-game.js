@@ -4,44 +4,28 @@ export default () => {
   greeting();
 
   const userName = getName();
+  let correctAnswer;
   let i = 0;
 
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
   console.log('--------');
 
-  do {
+  while (i < 3) {
     const question = getRandomInt(1, 50);
     console.log(`Question: ${question}`);
 
+    question % 2 === 0 ? (correctAnswer = 'yes') : (correctAnswer = 'no');
     const userAnswer = getAnswer();
 
-    if ((userAnswer !== 'yes') && (userAnswer !== 'no')) {
-      console.log(`"${userAnswer}" is wrong answer.`);
-      console.log('Correct answer "yes" if the number is even, otherwise answer "no".');
-      console.log(`Let's try again, ${userName}!`);
-      break;
-    }
-
-    if ((question % 2 === 0) && (userAnswer === 'yes')) {
+    if (correctAnswer === userAnswer) {
       console.log('Correct!');
       console.log('--------');
       i += 1;
-    }
-    if ((question % 2 !== 0) && (userAnswer === 'yes')) {
-      console.log("'yes' is wrong answer ;(. Correct answer was 'no'.");
-      console.log(`Let's try again, ${userName}!`);
-      break;
-    }
-    if ((question % 2 !== 0) && (userAnswer === 'no')) {
-      console.log('Correct!');
-      console.log('--------');
-      i += 1;
-    }
-    if ((question % 2 === 0) && (userAnswer === 'no')) {
-      console.log("'no' is wrong answer ;(. Correct answer was 'yes'.");
+    } else {
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
       console.log(`Let's try again, ${userName}!`);
       break;
     }
     if (i === 3) console.log(`Congratulations, ${userName}!`);
-  } while (i < 3);
+  }
 };
