@@ -14,7 +14,7 @@ export default () => {
   while (i < 3) {
     const num1 = getRandomInt(1, 50);
     const num2 = getRandomInt(1, 50);
-    let correctAnswer = 0;
+    let correctAnswer;
     const operator = operators[Math.floor(Math.random() * operators.length)];
     const question = `${num1} ${operator} ${num2}`;
 
