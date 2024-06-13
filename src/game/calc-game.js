@@ -1,50 +1,33 @@
-import greeting, { getName, getAnswer, getRandomInt } from '../index.js';
+import getGenLogic, { getRandomInt } from '../index.js';
 
-export default () => {
-  greeting();
+const descr = 'What is the result of the expression?';
 
-  const userName = getName();
-  let i = 0;
-
+const getQA = () => {
+  const num1 = getRandomInt(1, 50);
+  const num2 = getRandomInt(1, 50);
+  let correctAnswer;
   const operators = ['+', '-', '*'];
+  const operator = operators[Math.floor(Math.random() * operators.length)];
+  const question = `${num1} ${operator} ${num2}`;
 
-  console.log('What is the result of the expression?');
-  console.log('--------');
+  switch (operator) {
+    case '+':
+      correctAnswer = num1 + num2;
+      break;
 
-  while (i < 3) {
-    const num1 = getRandomInt(1, 50);
-    const num2 = getRandomInt(1, 50);
-    let correctAnswer;
-    const operator = operators[Math.floor(Math.random() * operators.length)];
-    const question = `${num1} ${operator} ${num2}`;
+    case '-':
+      correctAnswer = num1 - num2;
+      break;
 
-    console.log(`Question: ${question}`);
-    const userAnswer = getAnswer();
-
-    switch (operator) {
-      case '+':
-        correctAnswer = num1 + num2;
-        break;
-
-      case '-':
-        correctAnswer = num1 - num2;
-        break;
-
-      case '*':
-        correctAnswer = num1 * num2;
-        break;
+    case '*':
+      correctAnswer = num1 * num2;
+      break;
 
       // no default
-    }
-    if (Number(userAnswer) === correctAnswer) {
-      console.log('Correct!');
-      console.log('--------');
-      i += 1;
-    } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-      console.log(`Let's try again, ${userName}!`);
-      break;
-    }
-    if (i === 3) console.log(`Congratulations, ${userName}!`);
   }
+  return [question, correctAnswer];
+};
+
+export default () => {
+  getGenLogic(descr, getQA);
 };

@@ -1,53 +1,38 @@
-import greeting, { getName, getAnswer, getRandomInt } from '../index.js';
+import getGenLogic, { getRandomInt } from '../index.js';
 
-export default () => {
-  let i = 0;
+const descr = 'Find the greatest common divisor of given numbers.';
+
+const getQA = () => {
   let temp = 0;
   let correctAnswer;
 
-  greeting();
+  let num1 = getRandomInt(1, 50);
+  let num2 = getRandomInt(1, 50);
 
-  const userName = getName();
+  const question = `${num1} ${num2}`;
 
-  console.log('Find the greatest common divisor of given numbers.');
-  console.log('--------');
-
-  while (i < 3) {
-    let num1 = getRandomInt(1, 50);
-    let num2 = getRandomInt(1, 50);
-
-    console.log(`Question: ${num1} ${num2}`);
-    const userAnswer = getAnswer();
-
-    if (num1 < num2) {
-      temp = num1;
-      num1 = num2;
-      num2 = temp;
-    }
-
-    temp = num1 % num2;
-
-    if (temp === 0) {
-      correctAnswer = num2;
-    }
-    while (temp !== 0) {
-      num1 = temp;
-      temp = num2 % num1;
-      num2 = num1;
-      if (temp === 0) {
-        correctAnswer = num1;
-      }
-    }
-
-    if (Number(userAnswer) === correctAnswer) {
-      console.log('Correct!');
-      console.log('--------');
-      i += 1;
-    } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-      console.log(`Let's try again, ${userName}!`);
-      break;
-    }
-    if (i === 3) console.log(`Congratulations, ${userName}!`);
+  if (num1 < num2) {
+    temp = num1;
+    num1 = num2;
+    num2 = temp;
   }
+
+  temp = num1 % num2;
+
+  if (temp === 0) {
+    correctAnswer = num2;
+  }
+  while (temp !== 0) {
+    num1 = temp;
+    temp = num2 % num1;
+    num2 = num1;
+    if (temp === 0) {
+      correctAnswer = num1;
+    }
+  }
+  return [question, correctAnswer];
+};
+
+export default () => {
+  getGenLogic(descr, getQA);
 };
