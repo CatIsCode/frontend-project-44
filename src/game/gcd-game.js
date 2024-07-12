@@ -1,38 +1,45 @@
-import getGenLogic, { getRandomInt } from '../index.js';
+import getGenLogic from '../index.js';
+import getRandomInt from '../getRandomInt.js';
 
 const descr = 'Find the greatest common divisor of given numbers.';
 
-const getQA = () => {
+const getGcd = (num1, num2) => {
+  let a = num1;
+  let b = num2;
+  let answer;
   let temp = 0;
-  let correctAnswer;
-
-  let num1 = getRandomInt(1, 50);
-  let num2 = getRandomInt(1, 50);
-
-  const question = `${num1} ${num2}`;
-
-  if (num1 < num2) {
-    temp = num1;
-    num1 = num2;
-    num2 = temp;
+  if (a < b) {
+    temp = a;
+    a = b;
+    b = temp;
   }
 
-  temp = num1 % num2;
+  temp = a % b;
 
   if (temp === 0) {
-    correctAnswer = num2;
+    answer = b;
   }
   while (temp !== 0) {
-    num1 = temp;
-    temp = num2 % num1;
-    num2 = num1;
+    a = temp;
+    temp = b % a;
+    b = a;
     if (temp === 0) {
-      correctAnswer = num1;
+      answer = a;
     }
   }
+  return answer;
+};
+
+const getQuestionAndAnswer = () => {
+  const num1 = getRandomInt(1, 50);
+  const num2 = getRandomInt(1, 50);
+
+  const question = `${num1} ${num2}`;
+  const correctAnswer = getGcd(num1, num2);
+
   return [question, correctAnswer];
 };
 
 export default () => {
-  getGenLogic(descr, getQA);
+  getGenLogic(descr, getQuestionAndAnswer);
 };

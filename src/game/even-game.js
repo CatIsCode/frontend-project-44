@@ -1,19 +1,16 @@
-import getGenLogic, { getRandomInt } from '../index.js';
+import getGenLogic from '../index.js';
+import getRandomInt from '../getRandomInt.js';
 
 const descr = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-const getQA = () => {
-  let correctAnswer;
+const isEven = (number) => number % 2 === 0;
+
+const getQuestionAndAnswer = () => {
   const question = getRandomInt(1, 50);
-  const isEven = question % 2 === 0;
-  if (isEven) {
-    correctAnswer = 'yes';
-  } else {
-    correctAnswer = 'no';
-  }
+  const correctAnswer = isEven(question) ? 'yes' : 'no';
   return [question, correctAnswer];
 };
 
 export default () => {
-  getGenLogic(descr, getQA);
+  getGenLogic(descr, getQuestionAndAnswer);
 };
